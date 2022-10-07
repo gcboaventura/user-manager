@@ -2,7 +2,8 @@ import { FC, HTMLInputTypeAttribute, useState } from 'react'
 import { Grid } from '@mui/material'
 import { FormValues, schemaLogin } from './helpers'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, LoginActions } from '@/store'
+import { LoginMockActions } from '@/data'
+import { RootState } from '@/data/store'
 import {
 	Email,
 	EyeSlash,
@@ -26,11 +27,11 @@ export const Login: FC = (): JSX.Element => {
 	const dispatch = useDispatch()
 
 	const { login } = useSelector((state: RootState) => ({
-		login: state.auth.login
+		login: state.auth.loginMock
 	}))
 
 	const fetchLogin = (data: FormValues): void => {
-		dispatch(LoginActions.fetchLogin({ ...data }))
+		dispatch(LoginMockActions.fetchLoginMock({ ...data }))
 	}
 
 	const handleIcon = (): JSX.Element =>

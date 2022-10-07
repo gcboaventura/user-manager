@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { Router } from '@/routes'
 import { light, ResetCSS } from '@/styles'
 import { Provider } from 'react-redux'
-import { store } from '@/store'
+import { store } from '@/data/store'
 import { LocalStorageHelper } from '@/helpers'
 import { MockLocal } from '@/domain'
 

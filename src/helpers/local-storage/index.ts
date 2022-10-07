@@ -12,7 +12,7 @@ export class LocalStorageHelper implements LocalStorageModel {
 	returnMock(key: string): any {
 		if (this.verifyMock(key)) {
 			const mock = localStorage.getItem(key)
-			console.log(mock)
+			return JSON.parse(`${mock}`)
 		}
 	}
 

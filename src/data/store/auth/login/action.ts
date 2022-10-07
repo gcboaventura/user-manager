@@ -1,5 +1,5 @@
 import { HttpResponse, LoginRequest, LoginResponse } from '@/domain'
-import { createAction, ActionsUnion, Action } from '@/store'
+import { createAction, ActionsUnion, Action } from '@/data'
 
 export enum LoginActionKeys {
 	FETCH_LOGIN_START = '[LOGIN] FETCH_LOGIN_START',

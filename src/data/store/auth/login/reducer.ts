@@ -10,7 +10,7 @@ const initialState: LoginState = {
 	isLoading: false
 }
 
-const LoginReducer = (state = initialState, action: LoginActionUnion): LoginState => {
+const LoginMockReducer = (state = initialState, action: LoginActionUnion): LoginState => {
 	switch (action.type) {
 		case LoginActionKeys.FETCH_LOGIN_START:
 			return {
@@ -34,4 +34,4 @@ const LoginReducer = (state = initialState, action: LoginActionUnion): LoginStat
 	}
 }
 
-export default LoginReducer
+export default LoginMockReducer

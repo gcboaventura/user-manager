@@ -4,7 +4,7 @@ import { Drawer, List } from '@mui/material'
 import { UserSettings } from './user-settings'
 import { CollapseItems } from './collapse'
 import { Item } from './item'
-import { Users, Dashboard, System } from '@/components'
+import { Users, System } from '@/components'
 import { useTheme } from 'styled-components'
 
 export const Leftbar: FC<Props> = ({ show, onClose }): JSX.Element => {
@@ -34,8 +34,6 @@ export const Leftbar: FC<Props> = ({ show, onClose }): JSX.Element => {
 						</>
 					}
 				/>
-
-				<Item name="Dashboard" path="/dashboard" onClose={onClose} icon={<Dashboard />} />
 			</List>
 		</Drawer>
 	)

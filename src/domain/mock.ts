@@ -1,5 +1,5 @@
 import { LoginRequest } from './auth'
-import { UserMockModel } from './users-mock'
+import { UserMockModel } from './users'
 
 export interface Mock {
 	users: UserMockModel[]
