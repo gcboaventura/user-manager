@@ -7,7 +7,9 @@ import { Content, Leftbar, Navbar } from '@/components'
 export const PrivateRoute: FC<PrivateRouteProps> = ({ component: Component }): JSX.Element => {
 	const [show, setShow] = useState<boolean>(false)
 
-	if (new AuthHelper().isAuthenticated())
+	const auth = new AuthHelper().isAuthenticated()
+
+	if (auth)
 		return (
 			<>
 				<Navbar status={show} open={() => setShow(!show)} />

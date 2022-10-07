@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Box, Grid } from '@mui/material'
 import { Engine } from '@/components/icons'
 
@@ -17,7 +17,7 @@ export const Office = styled.p`
 	margin-top: 7px;
 `
 
-export const Business = styled.p`
+export const Email = styled.p`
 	color: ${({ theme }) => theme.colors.neutralColors.white};
 	font-family: ${({ theme }) => theme.typography.fontFamily.regular};
 	font-size: ${({ theme }) => theme.typography.fontSize.xs};
@@ -36,7 +36,7 @@ export const IconConfig = styled(Engine)`
 	cursor: pointer;
 `
 export const Header = styled(Grid)`
-	border-bottom: 1px solid ${({ theme }) => theme.colors.brandColors.quarternary};
+	border-bottom: 1px solid ${({ theme }) => theme.colors.neutralColors.white};
 	margin-bottom: 10px;
 `
 
@@ -46,4 +46,13 @@ export const Involucro = styled.p`
 	font-size: ${({ theme }) => theme.typography.fontSize.lg};
 	letter-spacing: ${({ theme }) => theme.spacing.px};
 	margin-bottom: 10px;
+`
+
+export const Logout = styled.p`
+	color: ${({ theme }) => theme.colors.neutralColors.white};
+	font-family: ${({ theme }) => theme.typography.fontFamily.regular};
+	font-size: ${({ theme }) => theme.typography.fontSize.xs};
+	letter-spacing: ${({ theme }) => theme.spacing.px};
+	margin-top: 7px;
+	cursor: pointer;
 `

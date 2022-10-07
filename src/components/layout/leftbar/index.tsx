@@ -10,14 +10,14 @@ import { useTheme } from 'styled-components'
 export const Leftbar: FC<Props> = ({ show, onClose }): JSX.Element => {
 	const {
 		colors: {
-			brandColors: { quarternary }
+			neutralColors: { white }
 		}
 	} = useTheme()
 
 	return (
 		<Drawer
 			PaperProps={{
-				style: { width: '350px', backgroundColor: quarternary, borderRadius: '0 10px 10px 0' }
+				style: { width: '350px', backgroundColor: white, borderRadius: '0 10px 10px 0' }
 			}}
 			anchor="left"
 			open={show}

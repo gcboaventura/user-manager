@@ -2,7 +2,7 @@ import { Close, Menu } from '@/components/icons'
 import styled from 'styled-components'
 
 export const Navbar = styled.nav`
-	background-color: ${({ theme }) => theme.colors.brandColors.primary};
+	background-color: ${({ theme }) => theme.colors.brandColors.secondary};
 	width: 100%;
 	height: 50px;
 	display: flex;
