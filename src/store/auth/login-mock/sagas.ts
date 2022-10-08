@@ -1,5 +1,6 @@
 import { Mock } from '@/domain'
 import { LocalStorageHelper } from '@/helpers'
+import { AlertActions } from '@/store/alert/action'
 import { put } from 'redux-saga/effects'
 import { fetchLoginMockAction, LoginMockActions } from './action'
 
@@ -20,5 +21,13 @@ export function* fetchLoginMock(action: fetchLoginMockAction) {
 		window.location.href = '/users'
 	} else {
 		yield put(LoginMockActions.fetchLoginMockFalied({ ...error }))
+		yield put(
+			AlertActions.ShowAlert({
+				duration: 3000,
+				message: error.message,
+				open: true,
+				severity: 'error'
+			})
+		)
 	}
 }

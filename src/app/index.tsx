@@ -5,8 +5,9 @@ import { Router } from '@/routes'
 import { light, ResetCSS } from '@/styles'
 import { LocalStorageHelper } from '@/helpers'
 import { MockLocal } from '@/domain'
-import { Provider } from 'react-redux'
-import { store } from '../store/config-store'
+import { Snack } from '@/components'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/config-store'
 
 export const App: FC = (): JSX.Element => {
 	const localHelper = new LocalStorageHelper()
@@ -15,14 +16,19 @@ export const App: FC = (): JSX.Element => {
 		localHelper.setMock('mock', MockLocal)
 	}
 
+	const {
+		alert: { duration, message, open, severity }
+	} = useSelector((state: RootState) => ({
+		alert: state.alert.data
+	}))
+
 	return (
-		<Provider store={store}>
-			<BrowserRouter>
-				<ResetCSS />
-				<ThemeProvider theme={light}>
-					<Router />
-				</ThemeProvider>
-			</BrowserRouter>
-		</Provider>
+		<BrowserRouter>
+			<ResetCSS />
+			<ThemeProvider theme={light}>
+				<Router />
+				<Snack open={open} severity={severity} duration={duration} message={message} />
+			</ThemeProvider>
+		</BrowserRouter>
 	)
 }

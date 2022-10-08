@@ -1,10 +1,21 @@
+import { AlertActions } from '@/store/alert/action'
 import { Box, Snackbar } from '@mui/material'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Alert } from '../alert'
 import { Props } from './types'
 
 export const Snack: FC<Props> = ({ duration, message, severity, open, ...props }): JSX.Element => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(
+				AlertActions.HidenAlert({ severity: severity, duration: 0, open: false, message: message })
+			)
+		}, duration)
+	}, [duration])
+
 	return (
 		<Snackbar
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
