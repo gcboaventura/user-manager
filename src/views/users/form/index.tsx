@@ -1,5 +1,14 @@
 import { FC, useEffect, useState } from 'react'
-import { Button, Check, Form, SimpleArrowLeft, SwitchComponent, TextInput } from '@/components'
+import {
+	Button,
+	Check,
+	Form,
+	Pencil,
+	SimpleArrowLeft,
+	SwitchComponent,
+	TextInput,
+	Trash
+} from '@/components'
 import { Box, Grid } from '@mui/material'
 import { FormValues } from './helpers/types'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -48,6 +57,8 @@ export const FormUser: FC = (): JSX.Element => {
 
 	const fetchEditUser = (values: FormValues): void => {}
 
+	const fetchDeleteUser = (values: FormValues): void => {}
+
 	const handleAction = (values: FormValues): void => {
 		id ? fetchEditUser(values) : fetchAddUser(values)
 	}
@@ -85,17 +96,25 @@ export const FormUser: FC = (): JSX.Element => {
 					</Grid>
 
 					<Grid item xs={12}>
-						{permissions.map((x: Permission, index: number) => {
-							const checked = initial.permissions.find((y: number) => y === x.value)
-							return (
-								<SwitchComponent
-									label={x.name}
-									key={index}
-									check={checked ? true : false}
-									onChange={() => (checked ? removePermission(x.value) : addPermission(x.value))}
-								/>
-							)
-						})}
+						<Box mt={4}>
+							<Grid container direction="row" spacing={2} alignItems="center">
+								{permissions.map((x: Permission, index: number) => {
+									const checked = initial.permissions.find((y: number) => y === x.value)
+									return (
+										<Grid item xs={4}>
+											<SwitchComponent
+												label={x.name}
+												key={index}
+												check={checked ? true : false}
+												onChange={() =>
+													checked ? removePermission(x.value) : addPermission(x.value)
+												}
+											/>
+										</Grid>
+									)
+								})}
+							</Grid>
+						</Box>
 					</Grid>
 
 					<Grid container direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
@@ -109,27 +128,28 @@ export const FormUser: FC = (): JSX.Element => {
 								/>
 							</Box>
 						</Grid>
-						<Grid item>
-							<Box mt={2}>
-								{!id && (
-									<Button
-										children="Cadastrar usuário"
-										icon={<Check />}
-										type="submit"
-										variant="contained"
-									/>
-								)}
+						{!id && (
+							<Grid item>
+								<Box mt={2}>
+									<Button children="Cadastrar usuário" icon={<Check />} variant="contained" />
+								</Box>
+							</Grid>
+						)}
 
-								{id && (
-									<Button
-										children="Editar usuário"
-										icon={<Check />}
-										type="submit"
-										variant="contained"
-									/>
-								)}
-							</Box>
-						</Grid>
+						{id && (
+							<>
+								<Grid item>
+									<Box mt={2}>
+										<Button children="Editar usuário" icon={<Pencil />} variant="contained" />
+									</Box>
+								</Grid>
+								<Grid item>
+									<Box mt={2}>
+										<Button children="Excluir usuário" icon={<Trash />} variant="outline" />
+									</Box>
+								</Grid>
+							</>
+						)}
 					</Grid>
 				</Grid>
 			}

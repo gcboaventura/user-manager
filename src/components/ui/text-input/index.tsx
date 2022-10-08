@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { Props } from './types'
 import { Label } from '../label'
 import { useField } from 'formik'
@@ -28,6 +28,10 @@ export const TextInput: FC<Props> = ({
 					$variant={variant}
 					$error={hasError}
 					$icon={icon ? true : false}
+					onChange={(event: ChangeEvent<HTMLInputElement>) => {
+						field.onChange(event)
+						props.onChange && props.onChange(event)
+					}}
 				/>
 				{icon && <Styled.WrapperIcon>{icon}</Styled.WrapperIcon>}
 			</Styled.WrapperInput>
