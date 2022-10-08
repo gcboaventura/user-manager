@@ -1,7 +1,7 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { LoginActionKeys, LoginMockActionKeys } from '../auth'
-import { fetchLoginMock } from '../auth/login-mock/sagas'
-import { fetchLogin } from '../auth/login/sagas'
+import { LoginActionKeys, LoginMockActionKeys } from './auth'
+import { fetchLoginMock } from './auth/login-mock/sagas'
+import { fetchLogin } from './auth/login/sagas'
 
 export function* rootSaga() {
 	yield all([

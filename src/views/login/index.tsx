@@ -2,8 +2,6 @@ import { FC, HTMLInputTypeAttribute, useState } from 'react'
 import { Grid } from '@mui/material'
 import { FormValues, schemaLogin } from './helpers'
 import { useSelector, useDispatch } from 'react-redux'
-import { LoginMockActions } from '@/data'
-import { RootState } from '@/data/store'
 import {
 	Email,
 	EyeSlash,
@@ -15,6 +13,8 @@ import {
 	Login as LoginIcon
 } from '@/components'
 import * as Styled from './helpers/styled'
+import { RootState } from '@/store/config-store'
+import { LoginMockActions } from '@/store/auth'
 
 export const Login: FC = (): JSX.Element => {
 	const [type, setType] = useState<HTMLInputTypeAttribute>('password')

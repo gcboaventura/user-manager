@@ -1,5 +1,5 @@
-import { HttpResponse, LoginRequest, LoginResponse } from '@/domain'
-import { createAction, ActionsUnion, Action } from '@/data'
+import { HttpResponse, LoginRequest, LoginResponse } from '../../../domain'
+import { createAction, ActionsUnion, Action } from '../../action-helpers'
 
 export enum LoginMockActionKeys {
 	FETCH_LOGIN_MOCK_START = '[LOGIN] FETCH_LOGIN_MOCK_START',

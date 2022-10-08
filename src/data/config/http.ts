@@ -1,5 +1,8 @@
 import axios, { Axios, AxiosResponse } from 'axios'
-import { StatusCode } from '../models'
+
+export enum StatusCode {
+	Unauthorized = 401
+}
 
 export const Http: Axios = axios
 

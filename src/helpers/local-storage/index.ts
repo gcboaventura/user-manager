@@ -1,4 +1,3 @@
-import { Mock } from '@/domain'
 import { LocalStorageModel } from './types'
 
 export class LocalStorageHelper implements LocalStorageModel {
