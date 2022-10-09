@@ -40,6 +40,10 @@ yarn
 yarn preapre
 ```
 
+## Observação
+
+O script `yarn start` serve apenas para o deploy no Heroku. Caso você deseja rodar localmente, siga os scripts abaixo.
+
 ## Yarn
 
 ```
