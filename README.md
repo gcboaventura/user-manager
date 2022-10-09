@@ -10,6 +10,10 @@ Os usuários cadastrados contam com informações do cotidiano de qualquer aplic
 
 Deixei o arquivo .gitlab-ci.yml para exemplicar um processo de CI/CD onde irá ser executado os pipelines automaticamente e posteriormente o deploy na AWS.
 
+## Link AWS
+
+http://user-manager.com.br.s3-website-us-east-1.amazonaws.com/
+
 ## Funcionalidades
 
     * Cadastro de usuário
