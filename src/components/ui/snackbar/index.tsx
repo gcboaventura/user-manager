@@ -23,7 +23,7 @@ export const Snack: FC<Props> = ({ duration, message, severity, open, ...props }
 			autoHideDuration={duration}
 			{...props}
 		>
-			<Box minHeight="100vh" width={'20vw'} mr={4}>
+			<Box minHeight="fit-content" width={'20vw'} mr={4}>
 				<Alert children={message} severity={severity} sx={{ width: '100%' }} />
 			</Box>
 		</Snackbar>

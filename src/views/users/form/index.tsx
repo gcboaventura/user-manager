@@ -1,4 +1,15 @@
 import { FC, useEffect, useState } from 'react'
+import { Box, Grid } from '@mui/material'
+import { FormValues } from './helpers/types'
+import { useNavigate, useParams } from 'react-router-dom'
+import { UserMockModel } from '@/domain'
+import { RootState } from '@/store/config-store'
+import { FormikHelpers } from 'formik'
+import { Permission, permissions } from './helpers/permissions'
+import { useDispatch, useSelector } from 'react-redux'
+import { AddUserActions } from '@/store/users/add/action'
+import { UpdateUserActions } from '@/store/users/update/action'
+import { DeleteUserActions } from '@/store/users/delete/action'
 import {
 	Button,
 	Check,
@@ -9,12 +20,6 @@ import {
 	TextInput,
 	Trash
 } from '@/components'
-import { Box, Grid } from '@mui/material'
-import { FormValues } from './helpers/types'
-import { useNavigate, useParams } from 'react-router-dom'
-import { LocalStorageHelper } from '@/helpers'
-import { Mock, UserMockModel } from '@/domain'
-import { Permission, permissions } from './helpers/permissions'
 
 export const FormUser: FC = (): JSX.Element => {
 	const [initial, setInitial] = useState<FormValues>({
@@ -25,22 +30,24 @@ export const FormUser: FC = (): JSX.Element => {
 		permissions: []
 	})
 
+	const { users } = useSelector((state: RootState) => ({
+		users: state.mockUsers.data
+	}))
+
 	const { id } = useParams<{ id: string }>()
 
 	const navigate = useNavigate()
+
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (id) {
 			handleInitialValues()
 		}
-	}, [id])
+	}, [id, users])
 
 	const handleInitialValues = (): void => {
-		const localHelper = new LocalStorageHelper()
-
-		const { users }: Mock = localHelper.returnMock('mock')
-
-		const user = users.find((x: UserMockModel) => x.id === parseInt(`${id}`))
+		const user = (users || []).find((x: UserMockModel) => x.id === parseInt(`${id}`))
 
 		if (user) {
 			setInitial({
@@ -53,18 +60,24 @@ export const FormUser: FC = (): JSX.Element => {
 		}
 	}
 
-	const fetchAddUser = (values: FormValues): void => {}
+	const fetchAddUser = (values: FormValues): void => {
+		dispatch(AddUserActions.fetchAddUser({ ...values }))
+	}
 
-	const fetchEditUser = (values: FormValues): void => {}
+	const fetchUpdateUser = (values: FormValues): void => {
+		dispatch(UpdateUserActions.fetchUpdateUser({ ...values, id: parseInt(`${id}`) }))
+	}
 
-	const fetchDeleteUser = (values: FormValues): void => {}
-
-	const handleAction = (values: FormValues): void => {
-		id ? fetchEditUser(values) : fetchAddUser(values)
+	const fetchDeleteUser = (id: string): void => {
+		dispatch(DeleteUserActions.fetchDeleteUser({ id: id, onSuccess: () => navigate('/users') }))
 	}
 
 	const addPermission = (value: number): void => {
 		setInitial({ ...initial, permissions: [...initial.permissions, value] })
+	}
+
+	const handleAction = (values: FormValues): void => {
+		id ? fetchUpdateUser(values) : fetchAddUser(values)
 	}
 
 	const removePermission = (value: number): void => {
@@ -79,7 +92,10 @@ export const FormUser: FC = (): JSX.Element => {
 	return (
 		<Form<FormValues>
 			initialValues={initial}
-			onSubmit={(values: FormValues) => handleAction(values)}
+			onSubmit={(values: FormValues, formikHelpers: FormikHelpers<FormValues>) => {
+				handleAction(values)
+				formikHelpers.resetForm({ isSubmitting: true })
+			}}
 			children={
 				<Grid container direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
 					<Grid item xs={3}>
@@ -101,7 +117,7 @@ export const FormUser: FC = (): JSX.Element => {
 								{permissions.map((x: Permission, index: number) => {
 									const checked = initial.permissions.find((y: number) => y === x.value)
 									return (
-										<Grid item xs={4}>
+										<Grid item xs={4} key={index}>
 											<SwitchComponent
 												label={x.name}
 												key={index}
@@ -131,7 +147,12 @@ export const FormUser: FC = (): JSX.Element => {
 						{!id && (
 							<Grid item>
 								<Box mt={2}>
-									<Button children="Cadastrar usuário" icon={<Check />} variant="contained" />
+									<Button
+										children="Cadastrar usuário"
+										type="submit"
+										icon={<Check />}
+										variant="contained"
+									/>
 								</Box>
 							</Grid>
 						)}
@@ -140,12 +161,23 @@ export const FormUser: FC = (): JSX.Element => {
 							<>
 								<Grid item>
 									<Box mt={2}>
-										<Button children="Editar usuário" icon={<Pencil />} variant="contained" />
+										<Button
+											children="Editar usuário"
+											type="submit"
+											icon={<Pencil />}
+											variant="contained"
+										/>
 									</Box>
 								</Grid>
 								<Grid item>
 									<Box mt={2}>
-										<Button children="Excluir usuário" icon={<Trash />} variant="outline" />
+										<Button
+											children="Excluir usuário"
+											type="button"
+											onClick={() => fetchDeleteUser(id)}
+											icon={<Trash />}
+											variant="icon"
+										/>
 									</Box>
 								</Grid>
 							</>

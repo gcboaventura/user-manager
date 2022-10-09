@@ -1,26 +1,33 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { Router } from '@/routes'
 import { light, ResetCSS } from '@/styles'
 import { LocalStorageHelper } from '@/helpers'
-import { MockLocal } from '@/domain'
 import { Snack } from '@/components'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/config-store'
+import { AuthMock } from '@/domain'
 
 export const App: FC = (): JSX.Element => {
 	const localHelper = new LocalStorageHelper()
 
-	if (!localHelper.returnMock('mock')) {
-		localHelper.setMock('mock', MockLocal)
-	}
-
 	const {
-		alert: { duration, message, open, severity }
+		alert: { duration, message, open, severity },
+		users
 	} = useSelector((state: RootState) => ({
-		alert: state.alert.data
+		alert: state.alert.data,
+		users: state.mockUsers.data
 	}))
+
+	useEffect(() => {
+		localHelper.setMock('mock-auth', AuthMock)
+	}, [])
+
+	useEffect(() => {
+		localStorage.removeItem('mock-users')
+		localHelper.setMock('mock-users', users)
+	}, [users])
 
 	return (
 		<BrowserRouter>

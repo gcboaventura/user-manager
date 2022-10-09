@@ -13,7 +13,7 @@ export const UserMockArray: UserMockModel[] = [
 		business: '123Projetei',
 		email: 'joao@123projetei.com.br',
 		office: 'Auxiliar de engenharia',
-		permissions: [1, 2, 3, 4, 5]
+		permissions: [1, 7, 13, 19, 22, 5, 8, 30, 19]
 	},
 	{
 		id: 1,
@@ -29,7 +29,7 @@ export const UserMockArray: UserMockModel[] = [
 		business: '123Projetei',
 		email: 'pedro@123projetei.com.br',
 		office: 'Gerente de projeto',
-		permissions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+		permissions: [1, 4, 8, 9, 10, 15, 16]
 	},
 	{
 		id: 3,
@@ -45,7 +45,7 @@ export const UserMockArray: UserMockModel[] = [
 		business: '123Projetei',
 		email: 'dafny@123projetei.com.br',
 		office: 'Analista de marketing',
-		permissions: [6, 7, 8, 9, 10, 11, 12, 13]
+		permissions: [6, 7, 10, 11, 12, 13]
 	},
 	{
 		id: 5,
@@ -61,7 +61,7 @@ export const UserMockArray: UserMockModel[] = [
 		business: '123Projetei',
 		email: 'marcos@123projetei.com.br',
 		office: 'CEO',
-		permissions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		permissions: [6, 7, 8, 9, 10]
 	},
 	{
 		id: 7,
@@ -69,7 +69,7 @@ export const UserMockArray: UserMockModel[] = [
 		business: '123Projetei',
 		email: 'bruno@123projetei.com.br',
 		office: 'CTO',
-		permissions: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+		permissions: [4, 7, 8, 9, 12, 13]
 	},
 	{
 		id: 8,

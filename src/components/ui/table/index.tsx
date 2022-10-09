@@ -43,24 +43,26 @@ export const TableComponent: FC<Props> = ({ items, columns, onClick }): JSX.Elem
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{items.map((x: any, index: number) => {
-						return (
-							<TableRow
-								hover
-								sx={{ backgroundColor: neutralColors.white, cursor: 'pointer' }}
-								key={index}
-								onClick={() => onClick && onClick(x)}
-							>
-								{columns.map((y: Column, index: number) => {
-									return (
-										<TableCell align="center" key={index}>
-											{x[y.key]}
-										</TableCell>
-									)
-								})}
-							</TableRow>
-						)
-					})}
+					{items
+						.sort((a, b) => a.name.localeCompare(b.name))
+						.map((x: any, index: number) => {
+							return (
+								<TableRow
+									hover
+									sx={{ backgroundColor: neutralColors.white, cursor: 'pointer' }}
+									key={index}
+									onClick={() => onClick && onClick(x)}
+								>
+									{columns.map((y: Column, index: number) => {
+										return (
+											<TableCell align="center" key={index}>
+												{x[y.key]}
+											</TableCell>
+										)
+									})}
+								</TableRow>
+							)
+						})}
 				</TableBody>
 			</Table>
 		</TableContainer>

@@ -1,4 +1,4 @@
-import { Mock } from '@/domain'
+import { LoginRequest } from '@/domain'
 import { LocalStorageHelper } from '@/helpers'
 import { AlertActions } from '@/store/alert/action'
 import { put } from 'redux-saga/effects'
@@ -9,7 +9,7 @@ export function* fetchLoginMock(action: fetchLoginMockAction) {
 
 	const { email, password } = action.payload
 
-	const { auth }: Mock = localHelper.returnMock('mock')
+	const auth: LoginRequest = localHelper.returnMock('mock-auth')
 
 	const token: string = 'any_token'
 

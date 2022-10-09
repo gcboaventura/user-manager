@@ -3,9 +3,11 @@ import { Grid, Box } from '@mui/material'
 import { Button, Form, Plus, Search, TableComponent, TextInput } from '@/components'
 import { Values } from './helpers/types'
 import { useNavigate } from 'react-router-dom'
-import { Mock, UserMockModel } from '@/domain'
+import { UserMockModel } from '@/domain'
 import { LocalStorageHelper } from '@/helpers'
 import { Column } from '@/components/ui/table/types'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/config-store'
 
 export const Users: FC = (): JSX.Element => {
 	const [search, setSearch] = useState<string | undefined>()
@@ -18,7 +20,9 @@ export const Users: FC = (): JSX.Element => {
 
 	const localHelper = new LocalStorageHelper()
 
-	const { users }: Mock = localHelper.returnMock('mock')
+	const { users } = useSelector((state: RootState) => ({
+		users: state.mockUsers.data
+	}))
 
 	const columns: Column[] = [
 		{ key: 'name', title: 'Nome' },
@@ -27,7 +31,7 @@ export const Users: FC = (): JSX.Element => {
 		{ key: 'business', title: 'Empresa' }
 	]
 
-	const fileredUsers = search
+	const filteredUsers = search
 		? users.filter(
 				(user) =>
 					user.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
@@ -64,7 +68,7 @@ export const Users: FC = (): JSX.Element => {
 			<Grid item xs={12}>
 				<Box mt={4}>
 					<TableComponent
-						items={fileredUsers}
+						items={filteredUsers}
 						columns={columns}
 						onClick={(row: UserMockModel) => navigate(`/users/detail/${row.id}`)}
 					/>
