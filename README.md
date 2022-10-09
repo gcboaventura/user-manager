@@ -1,18 +1,69 @@
-## RUN PROJECT
+# USER MANAGER
 
-Install dependecies
+## Sobre
 
-```
-	 yarn
-```
+Trata-se de uma aplicação React que gerencia (CRUD) de contas de usuários.
 
-Activate husky
+Os dados são encaminhados através do Redux Sagas e persistidos no local storage, simulando um banco de dados.
 
-```
-	 yarn preapre
-```
+Os usuários cadastrados contam com informações do cotidiano de qualquer aplicação web, como por exemplo: nome, email, cargo, permissões e afins. Desta forma, conseguimos simular um caso real de uso,
 
-## Access credentials
+## Funcionalidades
+
+    * Cadastro de usuário
+    * Edição de usuário
+    * Exclusão de usuário
+    * Lista de usuários
+    * Pesquisa de usuário
+
+## Credenciais de acesso
 
 email: admin@123projetei.com.br
+
 password: admin123projetei
+
+## Instale as dependências
+
+```
+yarn
+```
+
+## Husky
+
+```
+yarn preapre
+```
+
+## Yarn
+
+```
+yarn start
+```
+
+## Build - Yarn
+
+```
+yarn build
+```
+
+## Build - Docker
+
+```
+docker build -t user-manager .
+```
+
+## Executando - Docker
+
+```
+docker run -p 3000:3000 user-mananger
+```
+
+## Images
+
+![banner](./src/assets/img/login.png)
+
+![banner](./src/assets/img/users.png)
+
+![banner](./src/assets/img/details.png)
+
+![banner](./src/assets/img/register.png)
