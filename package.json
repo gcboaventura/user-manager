@@ -32,7 +32,8 @@
 		"yup": "^0.32.11"
 	},
 	"scripts": {
-		"start": "craco start",
+		"start": "node server.js",
+		"dev": "craco start",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "craco eject",
