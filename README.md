@@ -43,7 +43,7 @@ yarn preapre
 ## Yarn
 
 ```
-yarn start
+yarn dev
 ```
 
 ## Build - Yarn
