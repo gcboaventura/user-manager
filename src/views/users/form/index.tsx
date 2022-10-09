@@ -91,10 +91,12 @@ export const FormUser: FC = (): JSX.Element => {
 
 	return (
 		<Form<FormValues>
-			initialValues={initial}
-			onSubmit={(values: FormValues, formikHelpers: FormikHelpers<FormValues>) => {
+			initialValues={
+				id ? initial : { name: '', email: '', business: '', office: '', permissions: [] }
+			}
+			onSubmit={(values: FormValues, { resetForm }) => {
 				handleAction(values)
-				formikHelpers.resetForm({ isSubmitting: true })
+				resetForm()
 			}}
 			children={
 				<Grid container direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
