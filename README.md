@@ -6,7 +6,9 @@ Trata-se de uma aplicação React que gerencia (CRUD) de contas de usuários.
 
 Os dados são encaminhados através do Redux Sagas e persistidos no local storage, simulando um banco de dados.
 
-Os usuários cadastrados contam com informações do cotidiano de qualquer aplicação web, como por exemplo: nome, email, cargo, permissões e afins. Desta forma, conseguimos simular um caso real de uso,
+Os usuários cadastrados contam com informações do cotidiano de qualquer aplicação web, como por exemplo: nome, email, cargo, permissões e afins. Desta forma, conseguimos simular um caso real de uso.
+
+Deixei o arquivo .gitlab-ci.yml para exemplicar um processo de CI/CD onde irá ser executado os pipelines automaticamente e posteriormente o deploy na AWS.
 
 ## Funcionalidades
 
