@@ -1,0 +1,37 @@
+image: node:14.19.3
+
+stages:
+  - build
+  - test
+  - deploy
+
+build-user-manager:
+  stage: build
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - ./build
+
+deploy-to-production:
+  stage: deploy
+  dependencies:
+    - build-user-manager
+  image:
+    name: amazon/aws-cli
+    entrypoint: ['']
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - aws s3 sync out s3://BUCKET_NAME
+    - aws cloudfront create-invalidation --distribution-id ID_CLOUD_FRONT --paths "/*"
+  environment:
+    name: production
+    url: https://URL
+  only:
+    - master
