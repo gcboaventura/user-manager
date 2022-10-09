@@ -30,6 +30,8 @@ export const FormUser: FC = (): JSX.Element => {
 		permissions: []
 	})
 
+	const [statePermissions, setStatePermissions] = useState<number[]>([])
+
 	const { users } = useSelector((state: RootState) => ({
 		users: state.mockUsers.data
 	}))
@@ -61,7 +63,7 @@ export const FormUser: FC = (): JSX.Element => {
 	}
 
 	const fetchAddUser = (values: FormValues): void => {
-		dispatch(AddUserActions.fetchAddUser({ ...values }))
+		dispatch(AddUserActions.fetchAddUser({ ...values, permissions: statePermissions }))
 	}
 
 	const fetchUpdateUser = (values: FormValues): void => {
@@ -73,6 +75,7 @@ export const FormUser: FC = (): JSX.Element => {
 	}
 
 	const addPermission = (value: number): void => {
+		setStatePermissions([...statePermissions, value])
 		setInitial({ ...initial, permissions: [...initial.permissions, value] })
 	}
 
@@ -83,6 +86,7 @@ export const FormUser: FC = (): JSX.Element => {
 	const removePermission = (value: number): void => {
 		const arr = initial.permissions
 		arr.splice(arr.indexOf(value), 1)
+		setStatePermissions(arr)
 		setInitial({
 			...initial,
 			permissions: arr
