@@ -14,10 +14,6 @@ Deixei o arquivo .gitlab-ci.yml para exemplicar um processo de CI/CD onde irá s
 
 http://user-manager.com.br.s3-website-us-east-1.amazonaws.com/
 
-## Link Heroku
-
-https://user-manager-gcboaventura.herokuapp.com/
-
 ## Funcionalidades
 
     * Cadastro de usuário
